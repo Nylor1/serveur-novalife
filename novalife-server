@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function shutdownGracefully() {
+  echo "Server PID $1 is shutting down gracefully..."
+  kill -2 $1
+  wait $1
+  exit 0
+}
+
+trap 'shutdownGracefully "$PID"' SIGTERM
+
+./nova-life.x86_64 \
+  -batchmode \
+  -nographics \
+  -startServer "${SERVER_NAME}" \
+  -logFile "logs.log" &
+
+PID=$!
+wait "$PID"
