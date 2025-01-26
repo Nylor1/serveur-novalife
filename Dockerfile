@@ -22,7 +22,7 @@ RUN wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
 RUN tar -xvzf steamcmd_linux.tar.gz
 RUN ./steamcmd.sh +quit
 
-RUN ./steamcmd.sh +login anonymous +force_install_dir /home/steamuser/novalife +app_update 1665030 validate +quit
+RUN ./steamcmd.sh +force_install_dir /home/steamuser/novalife +login anonymous +app_update 1665030 validate +quit
 
 WORKDIR /home/steamuser/novalife/
 RUN mkdir -p /home/steamuser/.steam/sdk64
